@@ -38,7 +38,9 @@ namespace PhpVersionSwitcher
 					{
 						processManagers.Add(new ServiceManager(
 							(string)managerSetting["name"],
-							((string)managerSetting["label"]) ?? null
+							((string)managerSetting["label"]) ?? null,
+							null,
+							(bool)(managerSetting["restartWhenPhpVersionChanges"] ?? true)
 						));
 					}
 					else if (type == "executable")
@@ -49,7 +51,9 @@ namespace PhpVersionSwitcher
 							processes = new List<ProcessManager>() { new ProcessManager(
 								(string)managerSetting["path"],
 								((string)managerSetting["args"]) ?? "",
-								((string)managerSetting["label"]) ?? null
+								((string)managerSetting["label"]) ?? null,
+								null,
+								(bool)(managerSetting["restartWhenPhpVersionChanges"] ?? true)
 							) };
 						}
 						else
@@ -61,8 +65,9 @@ namespace PhpVersionSwitcher
 									(string)managerSetting["path"],
 									(string)managerInstanceSettings["args"],
 									((string)managerInstanceSettings["label"]) ?? null,
-									(string)managerSetting["label"])
-								);
+									(string)managerSetting["label"],
+									(bool)(managerSetting["restartWhenPhpVersionChanges"] ?? true)
+								));
 							});
 						}
 

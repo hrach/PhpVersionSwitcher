@@ -5,6 +5,7 @@ namespace PhpVersionSwitcher
 	internal interface IProcessManager
 	{
 		string Name { get; }
+		bool RestartWhenPhpVersionChanges { get; }
 		bool IsRunning();
 		string GroupName { get;  }
 		Task Start();

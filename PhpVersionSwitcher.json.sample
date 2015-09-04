@@ -10,6 +10,7 @@
 			"type": "executable",
 			"path": "c:\\web\\nginx\\nginx-1.7.0\\nginx.exe",
 			"label": "NGINX 1.7"
+			"restartWhenPhpVersionChanges": false
 		},
 		{
 			"type": "executable",
@@ -37,7 +38,8 @@
 		{
 			"type": "service",
 			"name": "MySQL",
-			"label": "MySQL 5.6"
+			"label": "MySQL 5.6",
+			"restartWhenPhpVersionChanges": false
 		}
 	]
 }

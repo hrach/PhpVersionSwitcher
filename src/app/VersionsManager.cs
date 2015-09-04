@@ -72,11 +72,12 @@ namespace PhpVersionSwitcher
 			{
 				for (var i = 0; i < this.serverManagers.Count; i++)
 				{
-					this.running[i] = this.serverManagers[i].IsRunning();
+					this.running[i] = this.serverManagers[i].IsRunning() && this.serverManagers[i].RestartWhenPhpVersionChanges;
 				}
 			}
 
 			await Task.WhenAll(this.serverManagers
+				.Where((server, i) => this.running[i])
 				.Select(server => server.Stop())
 			);
 

@@ -13,9 +13,10 @@ namespace PhpVersionSwitcher
 		public string FileName { get; private set; }
 		public string Arguments { get; private set; }
 		public string GroupName { get; private set; }
+		public bool RestartWhenPhpVersionChanges { get; private set; }
 		public Process Process { get; set; }
 
-		public ProcessManager(string path, string arguments = "", string name = null, string groupName = null)
+		public ProcessManager(string path, string arguments = "", string name = null, string groupName = null, bool restartWhenPhpVersionChanges = true)
 		{
 			var info = new FileInfo(path);
 			this.WorkingDirectory = info.DirectoryName;
@@ -23,6 +24,7 @@ namespace PhpVersionSwitcher
 			this.Arguments = arguments;
 			this.Name = name ?? info.Name;
 			this.GroupName = groupName;
+			this.RestartWhenPhpVersionChanges = restartWhenPhpVersionChanges;
 		}
 
 		public bool IsRunning()
